@@ -5,7 +5,8 @@ const {getAllTask,
         getTask, 
         createTask, 
         updateTask,
-         deleteTask
+         deleteTask,
+         postHogApi
         } = require('../controllers/tasks')
 
 router.route('/').get(getAllTask).post(createTask)

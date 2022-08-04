@@ -4,8 +4,12 @@ const getAllTask = (req, res) => {
     res.send('all items to uploaded')
 }
 const createTask = async (req, res) => {
+    try {
     const Task = await task.create(req.body)
-    res.json(201).json({ task })
+    res.status(201).json({ task })
+} catch (error) {
+  res.status(500).json({msg:err})
+}
 }
 const getTask = (req, res) => {
     res.json({id: req.params.id})
@@ -17,6 +21,15 @@ const getTask = (req, res) => {
     res.send('delete a task')
  }
 
+//  const postHogApi = (req, res) => {
+
+//     const data = fetch('https://posthog.skara.live/api/projects/2/dashboards/11')
+//     const result = data.json()
+//     res.send(result)
+
+ 
+// }
+
 
 module.exports ={
     getAllTask,
@@ -24,4 +37,5 @@ module.exports ={
     getTask,
     updateTask,
     deleteTask
+   
 }
