@@ -39,6 +39,7 @@ app.get('/vendors/:id',  async(req, res) => {
             headers: {
                 'Authorization': `Bearer ${apiKey1}`
             }
+            
         })
             apiData = value.data.results.filter((e)=>{
                 return e.id == req.params.id
@@ -49,6 +50,22 @@ app.get('/vendors/:id',  async(req, res) => {
         res.status(400).send(error);
     }
 })
+
+app.use('/vendors/:id/items', async(req, res) => {
+    const apiKey2 = process.env.POSTHOG_API_KEY
+    try{
+            const value = await axios.get('https://posthog.skara.live/api/projects/2/dashboards/11',{
+                headers:{
+                    'Authorization': `Bearer ${apiKey2}`
+                }
+            })
+       
+    } catch (error){
+        res.status(400).send(error);
+    }
+})
+
+
 
 
 const port = 8080;
